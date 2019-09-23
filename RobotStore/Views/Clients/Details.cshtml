@@ -1,0 +1,76 @@
+﻿@model RobotStore.Models.Client
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Client</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.HouseNumber)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.HouseNumber)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.StreetName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.StreetName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.CityName)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.CityName)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Orders)
+        </dt>
+        <dd class="col-sm-10">
+            <table class="table">
+                
+                @foreach (var item in Model.Orders)
+                {
+                    <tr>
+                        <th>Order No.</th>
+                        <th>@Html.DisplayFor(modelItem => item.OrderID)</th>
+                    </tr>
+                    <tr>
+                        <th>Task</th>
+                        <th>Mode</th>
+                        <th>Price</th>
+                    </tr>
+                    @foreach (var rob in item.Robots)
+                    {
+                        <tr>
+                            <td>
+                                @Html.DisplayFor(modelItem => rob.Task)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => rob.Mode)
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => rob.Price)
+                            </td>
+                        </tr>
+                    }
+                }
+            </table>
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.ClientID">Edit</a> |
+    <a asp-action="Index">Back to List</a>
+</div>
